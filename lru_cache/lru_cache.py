@@ -30,22 +30,11 @@ class LRUCache:
     key-value pair doesn't exist in the cache.
     """
     def get(self, key):
-        # for i in self.dictionary[key]:
-        #     self.storage.add_to_tail(i)
-        #     self.size +=1
-            
-        #     return i
 
         if key:
         
             item = self.dictionary.get(key)
             return item
-        elif self.size != 0:
-            value = self.dictionary.get(key)
-            # # self.dictionary.update({key:item})
-            # self.set(key, value)
-        
-            return value
         elif key != self.dictionary.values() or key != self.dictionary.keys():
             return None
         elif key != self.dictionary.values() and key != self.dictionary.keys():
@@ -65,11 +54,12 @@ class LRUCache:
     """
     def set(self, key, value):
         self.dictionary[key] = value
-        self.storage.add_to_head(key)
+        self.storage.add_to_head((key,value))
         self.size += 1
         if self.size == 10:
             max = self.storage.get_max()
             self.storage.delete(max)
+            self.size -= 1
         # self.dictionary.get(key)
         elif key is self.dictionary.get(key):
             

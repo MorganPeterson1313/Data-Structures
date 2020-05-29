@@ -59,7 +59,7 @@ class LRUCache:
         self.dictionary[key] = value
         self.storage.add_to_head((key,value))
         self.size += 1
-        if self.size == limit:
+        if self.size == self.limit:
             max = self.storage.get_max()
             self.storage.delete(max)
             self.size -= 1

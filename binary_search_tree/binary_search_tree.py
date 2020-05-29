@@ -3,7 +3,6 @@ sys.path.append('./queue_and_stack')
 from dll_queue import Queue
 from dll_stack import Stack
 
-
 class BinarySearchTree:
     def __init__(self, value):
         self.value = value
@@ -74,6 +73,7 @@ class BinarySearchTree:
 
     # Call the function `cb` on the value of each node
     # You may use a recursive or iterative approach
+    #same structure as a depth first traversal
     def for_each(self, cb):
         # if self.value:
         #     cb(self)
@@ -89,32 +89,44 @@ class BinarySearchTree:
     # Print all the values in order from low to high
     # Hint:  Use a recursive, depth first traversal
     def in_order_print(self, node):
-        print(self.value)
-        if self.left:
-            self.left.in_order_print(node)
+        
+        if node is None:
+            return
+
+        self.in_order_print(node.left)
+        print(node.value)
     
-        if self.right:
-            self.right.in_order_print(node)
+        self.in_order_print(node.right)
     
 
     # Print the value of every node, starting with the given node,
     # in an iterative breadth first traversal
     def bft_print(self, node):
-        print(self.value)
-        if self.left:
-            return self.left.bft_print(node)
-    
-        return self.right.bft_print(node)
+       
+        Queue = []
+        Queue.enqueue(node)
+        while len(Queue)!= 0:
+            node = Queue.dequeue()
+            print(node.value)
+            if node.left is not None:
+                Queue.enqueue(node.left)
+            if node.right is not None:
+                Queue.enqueue(node.right)
         
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
     def dft_print(self, node):
-        print(self.value.for_each(node))
-        if self.left:
-           return self.left.dft_print(node)
-    
-        if self.right:
-            return self.right.dft_print(node)
+
+        Stack = []
+        Stack.push(node)
+        #as long as teh stack is not empty
+        while len(Stack) != 0:
+            node = stack.pop()
+            print(node.value)
+            if node.left is not None:
+                Stack.push(node.left)
+            if node.right is not None:
+                Stack.push(node.right)
     # STRETCH Goals -------------------------
     # Note: Research may be required
 

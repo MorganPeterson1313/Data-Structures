@@ -1,5 +1,6 @@
 import sys
-sys.path.append('./queue_and_stack')
+sys.path.append('C:\Users\MorganPeterson\Documents\CODE PROJECTS\Data-Structures\queue_and_stack\dll_queue.py')
+sys.path.append('C:\Users\MorganPeterson\Documents\CODE PROJECTS\Data-Structures\queue_and_stack\dll_stack.py')
 from dll_queue import Queue
 from dll_stack import Stack
 
@@ -8,7 +9,7 @@ class BinarySearchTree:
         self.value = value
         self.left = None
         self.right = None
-        
+    
 
     # Insert the given value into the tree
     def insert(self, value):
@@ -102,31 +103,30 @@ class BinarySearchTree:
     # Print the value of every node, starting with the given node,
     # in an iterative breadth first traversal
     def bft_print(self, node):
-       
-        Queue = []
-        Queue.enqueue(node)
-        while len(Queue)!= 0:
-            node = Queue.dequeue()
-            print(node.value)
+        q = Queue()
+        q.enqueue(node)
+        print("outside")
+        while q.len != 0:
+            print("inside while")
             if node.left is not None:
-                Queue.enqueue(node.left)
+                q.enqueue(node.left)
             if node.right is not None:
-                Queue.enqueue(node.right)
-        
+                q.enqueue(node.right)
+            print(node.value)
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
     def dft_print(self, node):
 
-        Stack = []
-        Stack.push(node)
+        s = Stack()
+        s.push(node)
         #as long as teh stack is not empty
-        while len(Stack) != 0:
+        while s.len != 0:
             node = stack.pop()
             print(node.value)
             if node.left is not None:
-                Stack.push(node.left)
+                s.push(node.left)
             if node.right is not None:
-                Stack.push(node.right)
+                s.push(node.right)
     # STRETCH Goals -------------------------
     # Note: Research may be required
 

@@ -1,1 +1,1 @@
-right
+getvalue

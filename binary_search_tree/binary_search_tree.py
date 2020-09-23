@@ -1,6 +1,7 @@
 import sys
-sys.path.append('C:\Users\MorganPeterson\Documents\CODE PROJECTS\Data-Structures\queue_and_stack\dll_queue.py')
-sys.path.append('C:\Users\MorganPeterson\Documents\CODE PROJECTS\Data-Structures\queue_and_stack\dll_stack.py')
+# sys.path.append('C:\Users\MorganPeterson\Documents\CODE PROJECTS\Data-Structures\queue_and_stack\dll_queue.py')
+# sys.path.append('C:\Users\MorganPeterson\Documents\CODE PROJECTS\Data-Structures\queue_and_stack\dll_stack.py')
+sys.path.append('../queue_and_stack')
 from dll_queue import Queue
 from dll_stack import Stack
 
@@ -105,12 +106,12 @@ class BinarySearchTree:
     def bft_print(self, node):
         q = Queue()
         q.enqueue(node)
-        print("outside")
-        while q.len != 0:
-            print("inside while")
-            if node.left is not None:
+    
+        while len(q) != 0:
+            node = q.dequeue()
+            if node.left:
                 q.enqueue(node.left)
-            if node.right is not None:
+            if node.right:
                 q.enqueue(node.right)
             print(node.value)
     # Print the value of every node, starting with the given node,
@@ -120,8 +121,8 @@ class BinarySearchTree:
         s = Stack()
         s.push(node)
         #as long as teh stack is not empty
-        while s.len != 0:
-            node = stack.pop()
+        while len(s) != 0:
+            node = s.pop()
             print(node.value)
             if node.left is not None:
                 s.push(node.left)
@@ -132,8 +133,22 @@ class BinarySearchTree:
 
     # Print Pre-order recursive DFT
     def pre_order_dft(self, node):
-        pass
-
+        if node is None:
+            return
+        print(node.value)
+        
+        self.pre_order_dft(node.left)
+            
+    
+        self.pre_order_dft(node.right)
+            
     # Print Post-order recursive DFT
     def post_order_dft(self, node):
-        pass
+        if node is None:
+            return
+        
+        self.post_order_dft(node.left)
+            
+        
+        self.post_order_dft(node.right)
+        print(node.value)

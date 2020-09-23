@@ -24,7 +24,7 @@ class Queue:
             
         else:
             return None
-    def len(self):
+    def __len__(self):
         return self.size
         # elif self.size[0:n] == self.size:
         #     return 1 + len(self.size[n-1])

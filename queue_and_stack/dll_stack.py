@@ -19,5 +19,5 @@ class Stack:
             return self.storage.remove_from_head()
         
 
-    def len(self):
-        return self.size
+    # def __len__(self):
+    #     return self.size

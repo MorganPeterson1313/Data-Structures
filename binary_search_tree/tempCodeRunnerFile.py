@@ -1,1 +1,2 @@
-getvalue
+
+        output = sys.stdout.getvalue()

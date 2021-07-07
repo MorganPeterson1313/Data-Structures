@@ -1,3 +1,6 @@
+import sys
+sys.path.append('../doubly_linked_list')
+from doubly_linked_list import DoublyLinkedList
 class LRUCache:
     """
     Our LRUCache class keeps track of the max number of nodes it
@@ -7,7 +10,18 @@ class LRUCache:
     to every node stored in the cache.
     """
     def __init__(self, limit=10):
-        pass
+        self.limit = limit
+        self.size = 0
+        self.storage = DoublyLinkedList()
+        self.dictionary = vars(self.storage)
+        # self.dictionary.items()
+        # if self.storage.__len__() > 0:
+        #     for node in self.storage:
+        #         self.dictionary = dict.fromkeys(node)
+        #     return self.dictionary
+
+        # self.storage = {}
+        # self.dictionary = dict.fromkeys([self.storage])
 
     """
     Retrieves the value associated with the given key. Also
@@ -17,8 +31,20 @@ class LRUCache:
     key-value pair doesn't exist in the cache.
     """
     def get(self, key):
-        pass
 
+        if key:
+        
+            item = self.dictionary.get(key)
+            return item
+        elif key != self.dictionary.values() or key != self.dictionary.keys():
+            return None
+        elif key != self.dictionary.values() and key != self.dictionary.keys():
+            return None
+        # elif self.size is None:
+        #     return
+        elif key is not self.dictionary[key]:
+            return None
+             
     """
     Adds the given key-value pair to the cache. The newly-
     added pair should be considered the most-recently used
@@ -30,4 +56,17 @@ class LRUCache:
     the newly-specified value.
     """
     def set(self, key, value):
-        pass
+        self.dictionary[key] = value
+        self.storage.add_to_head((key,value))
+        self.size += 1
+        if self.size == self.limit:
+            max = self.storage.get_max()
+            self.storage.delete(max)
+            self.size -= 1
+        # self.dictionary.get(key)
+        elif key is self.dictionary.get(key):
+            
+            self.dictionary.update(key, value)
+        else:
+            return None
+            
